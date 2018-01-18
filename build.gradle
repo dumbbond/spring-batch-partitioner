@@ -1,0 +1,48 @@
+buildscript {
+  ext {
+    springBootVersion = '1.5.9.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.spring.batch'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+}
+
+
+dependencies {
+
+
+  compile("org.springframework.boot:spring-boot-starter-web") {
+    exclude module: "spring-boot-starter-tomcat"
+  }
+
+  compile     group: 'org.springframework.boot',     name: 'spring-boot-starter-actuator'
+  compile     group: 'org.springframework.boot',     name: 'spring-boot-starter-batch'
+  compile     group: 'org.springframework.boot',     name: 'spring-boot-starter-jetty'
+  compile     group: 'org.springframework.boot',     name: 'spring-boot-starter-cache'
+  compile     group: 'org.springframework.data',     name: 'spring-data-elasticsearch'
+  compile     group: 'org.postgresql',                name: 'postgresql'
+  runtime('org.postgresql:postgresql')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('org.springframework.batch:spring-batch-test')
+}
+
+bootRun {
+  systemProperties System.properties
+}
+springBoot {
+  executable = true
+}
