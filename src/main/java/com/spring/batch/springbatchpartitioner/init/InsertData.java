@@ -17,7 +17,7 @@ public class InsertData {
     private static final String DB_CONNECTION = "jdbc:postgresql://localhost:5432/test";
     private static final String DB_USER = "test";
     private static final String DB_PASSWORD = "test";
-    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS USERS (ID INTEGER,USER_LOGIN VARCHAR(22), USER_PASS VARCHAR(22),AGE VARCHAR(22));";
+    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS USERS (ID INTEGER,USER_LOGIN VARCHAR(222), USER_PASS VARCHAR(222),AGE VARCHAR(222));";
 
 
     public void insertDataIntoUserTable() throws Exception {
@@ -34,16 +34,15 @@ public class InsertData {
 
             Random generator = new Random();
 
-            for (int i = 1; i <= 1000000; i++) {
+            for (int i = 1; i <= 100000; i++) {
 
                 String insertTableSQL = "INSERT INTO USERS (ID, USER_LOGIN, USER_PASS, AGE) VALUES (':id',':name',':pass',':age')";
 
-                insertTableSQL = insertTableSQL.replaceAll(":id", String.valueOf(i + generator.nextInt(1000000)));
+                insertTableSQL = insertTableSQL.replaceAll(":id", String.valueOf(i));
                 insertTableSQL = insertTableSQL.replaceAll(":name", "user_" + UUID.randomUUID().toString());
                 insertTableSQL = insertTableSQL.replaceAll(":pass", "pass_" + UUID.randomUUID().toString());
 
                 insertTableSQL = insertTableSQL.replaceAll(":age", String.valueOf(generator.nextInt(1000000)));
-
                 System.out.println(insertTableSQL);
 
                 statement.addBatch(insertTableSQL);

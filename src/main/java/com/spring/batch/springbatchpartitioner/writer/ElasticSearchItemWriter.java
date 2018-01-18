@@ -28,7 +28,9 @@ public class ElasticSearchItemWriter implements ItemWriter<User> {
 
     @Override
     public void write(List<? extends User> list) throws Exception {
+        System.out.println("ElasticSearchItemWriter " + list.size());
         elasticsearchTemplate.bulkIndex(getIndexQueries(list));
+        elasticsearchTemplate.refresh(User.class);
 
     }
 

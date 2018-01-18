@@ -66,7 +66,7 @@
 				<entry key="toId" value="#{stepExecutionContext[toId]}" />
 			</map>
 		</property>
-		<property name="pageSize" value="10" />
+		<property name="pageSize" value="100" />
 		<property name="rowMapper">
 			<bean class="com.spring.batch.springbatchpartitioner.mapper.UserRowMapper" />
 		</property>

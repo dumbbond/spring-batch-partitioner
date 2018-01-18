@@ -1,5 +1,6 @@
 package com.spring.batch.springbatchpartitioner.endpoint;
 
+import com.spring.batch.springbatchpartitioner.init.InsertData;
 import com.spring.batch.springbatchpartitioner.starter.BatchStarter;
 import org.elasticsearch.action.count.CountRequestBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,14 @@ public class BatchStarterController {
     @Autowired
     private BatchStarter batchStarter;
 
+
+    @Autowired
+    private InsertData insertData;
+
     @GetMapping
-    public void startBatch() {
+    public void startBatch() throws Exception {
+
+        insertData.insertDataIntoUserTable();
         batchStarter.run();
 
     }
